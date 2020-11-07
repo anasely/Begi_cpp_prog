@@ -5,9 +5,9 @@ In this programming example
 
 # Run program with
 
-# >g++ main.cpp -o open
+> g++ main.cpp -o open
 
 # and
 
-# > ./open
+> ./open
 
