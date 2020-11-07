@@ -103,7 +103,68 @@ void showSelection(){
     cout << "4 for fruit punch" << endl;
     cout << "9 to exit" << endl;
 }
+void sellProduct(dispenserType& product, cashRegister& pCounter){
+    int amount1; // Variable to hold the amount entered
+    int amount2; // Variable to hold the extra amount needed
 
+    if(product.getNoOfItems() > 0){ // if the dispenser is not empty
+        cout << "Please deposit " << product.getCost()
+            << " cents" << endl;
+        cin >> amount1;
+        if(amount1 < product.getCost()){
+            cout << "Please deposit another "
+                << product.getCost()-amount1<< " cents" << endl;
+            cin >> amount2;
+            amount1 += amount2;
+        }
+        if(amount1 >= product.getCost()){
+            pCounter.acceptAmount(amount1);
+            product.makeSale();
+            cout << "Collect your item at the bottom and enjoy."
+                << endl;
+        }
+        else
+            cout << "The amount is not enough."
+                << "Collect what you deposited." << endl;
+        cout << "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+            << endl << endl;
+    }
+    else
+        cout << "Sorry, this item is sold out." << endl;
+}// End sellProduct
+
+int main(){
+    cashRegister counter;
+    dispenserType appleJuice(100, 50);
+    dispenserType orangeJuice(100, 65);
+    dispenserType mangoLassi(75, 45);
+    dispenserType fruitPunch(100, 85);
+
+    int choice; // Variable to hold the section
+    showSelection();
+    cin >> choice;
+    while (choice != 9) {
+        switch (choice) {
+            case 1:
+                sellProduct(appleJuice, counter);
+                break;
+            case 2:
+                sellProduct(orangeJuice, counter);
+                break;
+            case 3:
+                sellProduct(mangoLassi, counter);
+                break;
+            case 4:
+                sellProduct(fruitPunch, counter);
+                break;
+            default:
+                cout << "Invalid selection." << endl;
+        }// end switch
+        showSelection();
+        cin >> choice;
+    }// end while
+    return 0;
+}// end main
 
 
 
