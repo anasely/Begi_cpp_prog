@@ -11,3 +11,5 @@ In this programming example
 
 > ./open
 
+## read the comments to undestand 
+
